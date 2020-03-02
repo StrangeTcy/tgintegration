@@ -2,7 +2,7 @@
 TgIntegration
 =============
 
-**Note: Currently kind of broken, I'm working on it. `Send me a thumbsup <https://t.me/JosXaTelegramChat`_ to speed up the process!**
+**Note: Currently kind of broken, I'm working on it. `Send me a thumbsup <https://t.me/JosXaTelegramChat>`_ to speed up the process!**
 
 .. image:: https://img.shields.io/pypi/v/tgintegration.svg
     :target: https://pypi.python.org/pypi/tgintegration
