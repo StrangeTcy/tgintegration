@@ -43,8 +43,8 @@ jobs:
           poetry run python cicd/generate_configini_from_gh_secrets.py
     - name: Run examples
       run: |
-        poetry run python .\examples\automation\idletown.py
-        poetry run python .\examples\automation\dinoparkgame.py
+        poetry run python ./examples/automation/idletown.py
+        poetry run python ./examples/automation/dinoparkgame.py
     - name: Test with pytest
       run: |
         pip install pytest
