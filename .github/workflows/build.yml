@@ -5,9 +5,9 @@ name: Build tgintegration
 
 on:
   push:
-    branches: [ async-develop ]
+    branches: [ master, dev, develop, async, async-develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev, develop, async, async-develop ]
 
 jobs:
   build:
