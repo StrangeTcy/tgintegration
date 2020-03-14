@@ -1,44 +1,11 @@
-from typing import (
-    Any,
-    Callable,
-    ClassVar,
-    Generic,
-    Optional,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    AbstractSet,
-    GenericMeta,
-    Hashable,
-    Iterable,
-    Iterator,
-    Mapping,
-    MutableMapping,
-    MutableSequence,
-    MutableSet,
-    Sequence,
-    AsyncIterator,
-    AsyncIterable,
-    Coroutine,
-    Collection,
-    AsyncGenerator,
-    Deque,
-    Dict,
-    List,
-    Set,
-    FrozenSet,
-    NamedTuple,
-    Generator,
-    cast,
-    overload,
-    TYPE_CHECKING
-)
 import asyncio
 import logging
 import os
 import traceback
 from typing import Dict
+from typing import (
+    Optional
+)
 
 from tgintegration import InteractionClient, BotController
 from tgintegration.containers.response import Response
