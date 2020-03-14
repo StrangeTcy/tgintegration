@@ -24,6 +24,7 @@ class ReplyKeyboard:
         self._client = weakref.proxy(client)
         self._message_id = message_id
         self._peer_id = chat_id
+
         self.rows = button_rows
 
     def find_button(self, pattern) -> Optional[KeyboardButton]:
