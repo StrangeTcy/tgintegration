@@ -8,10 +8,13 @@ from typing import Optional, Tuple, List
 
 from tgintegration import InteractionClient, BotController, ReplyKeyboard
 
+MAX_RUNS: Optional[int] = None
+SESSION_NAME: str = "my_account"
+
 
 async def main():
     # This example uses the configuration of `config.ini` (see examples/README)
-    game = DinoParkGame(session_name="my_account", log_level=logging.DEBUG)
+    game = DinoParkGame(session_name=SESSION_NAME, log_level=logging.DEBUG)
     await game.start()
     while True:
         try:

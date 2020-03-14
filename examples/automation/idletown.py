@@ -1,8 +1,39 @@
-"""
-Before running this example, go to @IdleTownBot and set up your account first:
-
-
-"""
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Generic,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    AbstractSet,
+    GenericMeta,
+    Hashable,
+    Iterable,
+    Iterator,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    MutableSet,
+    Sequence,
+    AsyncIterator,
+    AsyncIterable,
+    Coroutine,
+    Collection,
+    AsyncGenerator,
+    Deque,
+    Dict,
+    List,
+    Set,
+    FrozenSet,
+    NamedTuple,
+    Generator,
+    cast,
+    overload,
+    TYPE_CHECKING
+)
 import asyncio
 import logging
 import os
@@ -12,14 +43,16 @@ from typing import Dict
 from tgintegration import InteractionClient, BotController
 from tgintegration.containers.response import Response
 
+MAX_RUNS: Optional[int] = None
+SESSION_NAME: str = "my_account"
+
 examples_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 log = logging.getLogger(__name__)
-log.info("hello")
 
 # This example uses the configuration of `config.ini` (see examples/README)
 client = InteractionClient(
-    session_name='my_account',
+    session_name=SESSION_NAME,
     global_action_delay=2.3,  # The @IdleTownBot has a spam limit of about 1.9s
     workdir=examples_dir,  # Load configuration from parent folder
     config_file=os.path.join(examples_dir, 'config.ini')

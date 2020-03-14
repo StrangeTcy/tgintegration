@@ -19,7 +19,7 @@ controller = BotController(
 )
 
 
-async def run_example():
+async def main():
 
     print("Starting...")
     await controller.start()
@@ -107,4 +107,4 @@ async def run_example():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(run_example())
+    asyncio.get_event_loop().run_until_complete(main())

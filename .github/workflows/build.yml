@@ -35,19 +35,13 @@ jobs:
                     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
                     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
                     flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-            -   name: Generate config.ini from secrets for examples
+            -   name: Run examples once
                 env:
                     API_ID: ${{ secrets.API_ID }}
                     API_HASH: ${{ secrets.API_HASH }}
+                    SESSION_STRING: ${{ secrets.SESSION_STRING }}
                 run: |
-                    poetry run python cicd/generate_configini_from_gh_secrets.py
-            -   name: Show
-                run: |
-                    cat examples/config.ini
-            -   name: Run examples
-                run: |
-                    poetry run python ./examples/automation/idletown.py
-                    poetry run python ./examples/automation/dinoparkgame.py
+                    poetry run python tests/run_examples.py
             -   name: Test with pytest
                 run: |
                     pip install pytest

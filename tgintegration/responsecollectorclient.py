@@ -1,28 +1,17 @@
 import asyncio
-from contextlib import contextmanager
-from typing import Union, List, Optional, Callable, Iterator
-
-from pyrogram.client.handlers.handler import Handler
-from typing_extensions import Final
-
-import inspect
 import logging
-import time
+from contextlib import contextmanager
 from datetime import datetime, timedelta
-from pyrogram import Client, Filters, Message, MessageHandler
-from pyrogram.api import types
-from pyrogram.api.functions.messages import GetBotCallbackAnswer, GetInlineBotResults
-from pyrogram.api.types import InputGeoPoint
-from pyrogram.api.types import Message
-from pyrogram.api.types.messages import BotCallbackAnswer
-from pyrogram.client.filters.filter import Filter
-from pyrogram.client.methods.messages.send_chat_action import ChatAction
-from pyrogram.errors import RpcMcgetFail, FloodWait
-from pyrogram.session import Session
+from typing import Optional, Iterator
+
+import time
+from pyrogram import Client, MessageHandler
+from pyrogram.client.handlers.handler import Handler
+from pyrogram.errors import RpcMcgetFail
+from typing_extensions import Final
 
 from tgintegration.containers.response import InvalidResponseError, Response
 from .awaitableaction import AwaitableAction
-from .containers.inlineresults import InlineResultContainer
 
 SLEEP_DURATION: Final[float] = 0.15
 
