@@ -13,3 +13,7 @@ def generate():
 
     with open(examples_dir / "config.ini", "w") as text_file:
         text_file.write(s)
+
+
+if __name__ == "__main__":
+    generate()
