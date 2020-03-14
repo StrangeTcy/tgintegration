@@ -2,6 +2,7 @@ import asyncio
 from contextlib import contextmanager
 from typing import Union, List, Optional, Callable, Iterator
 
+from async_generator import asynccontextmanager
 from pyrogram.client.handlers.handler import Handler
 from typing_extensions import Final
 
@@ -398,13 +399,13 @@ def __make_awaitable_method(class_, method_name, send_method):
 
     # TODO: functools.wraps
     async def f(
-        self,
+        self: InteractionClient,
         *args,  # usually the chat_id and a string (e.g. text, command, file_id)
-        filters=None,
-        num_expected=None,
-        max_wait=15,
-        min_wait_consecutive=2,
-        raise_=True,
+        filters: Filter = None,
+        num_expected: int = None,
+        max_wait: float = 15,
+        min_wait_consecutive: float = 2,
+        raise_: bool = True,
         **kwargs
     ):
         action = AwaitableAction(
@@ -416,7 +417,15 @@ def __make_awaitable_method(class_, method_name, send_method):
             max_wait=max_wait,
             min_wait_consecutive=min_wait_consecutive,
         )
-        return await self.act_await_response(action, raise_=raise_)
+        async with self.expect(
+            filters=filters,
+            max_wait=max_wait,
+            min_wait_consecutive=min_wait_consecutive,
+            raise_=raise_,
+        ) as response:
+            result = await send_method(self, *args, **kwargs)
+            response.action_result = result
+            return response
 
     method_name += "_await"
     f.__name__ = method_name

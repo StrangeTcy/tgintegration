@@ -30,23 +30,26 @@ async def run_example():
     print(
         "Send the /start command to the bot_under_test and 'await' exactly three messages..."
     )
-    response = await controller.send_command_await("start", num_expected=3)
+    async with controller.collect() as collector:
+        await controller.send_command("start")
 
-    assert response.num_messages == 3
-    print("Three messages received.")
-    assert response.messages[0].sticker
-    print("First message is a sticker.")
+        response = await collector.expect(count=3)
 
-    print("Let's examine the buttons in the response...")
-    inline_keyboard = response.inline_keyboards[0]
-    assert len(inline_keyboard.rows[0]) == 3
-    print("There are three buttons in the first row.")
+        assert response.num_messages == 3
+        print("Three messages received.")
+        assert response.messages[0].sticker
+        print("First message is a sticker.")
 
-    # We can also query and press the inline keyboard buttons:
-    print("Click the first button matching the pattern r'.*Examples'")
-    examples = await response.inline_keyboards[0].press_button_await(
-        pattern=r".*Examples"
-    )
+        print("Let's examine the buttons in the response...")
+        inline_keyboard = response.inline_keyboards[0]
+        assert len(inline_keyboard.rows[0]) == 3
+        print("There are three buttons in the first row.")
+
+        # We can also query and press the inline keyboard buttons:
+        print("Click the first button matching the pattern r'.*Examples'")
+        examples = await response.inline_keyboards[0].press_button_await(
+            pattern=r".*Examples"
+        )
 
     assert "Examples for contributing to the BotList" in examples.full_text
     # As the bot edits the message, `press_inline_button` automatically listens for `MessageEdited`
