@@ -43,7 +43,7 @@ jobs:
                     poetry run python cicd/generate_configini_from_gh_secrets.py
             -   name: Show
                 run: |
-                    ls examples/config.ini
+                    cat examples/config.ini
             -   name: Run examples
                 run: |
                     poetry run python ./examples/automation/idletown.py
