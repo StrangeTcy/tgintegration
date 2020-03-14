@@ -49,7 +49,7 @@ def get_buttons(response: Response) -> Dict[str, str]:
 
 async def main():
     await controller.start()
-    while True:
+    for _ in range(MAX_RUNS or 999999):
         try:
             # Setup
             await controller.clear_chat()

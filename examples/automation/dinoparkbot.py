@@ -16,7 +16,7 @@ async def main():
     # This example uses the configuration of `config.ini` (see examples/README)
     game = DinoParkGame(session_name=SESSION_NAME, log_level=logging.DEBUG)
     await game.start()
-    while True:
+    for _ in range(MAX_RUNS or 999999):
         try:
             await asyncio.sleep(1.5)
             await game.buy_dinosaurs()
