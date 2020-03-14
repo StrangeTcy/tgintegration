@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def generate():
-    examples_dir = Path("examples")
+    examples_dir = Path(__file__).parent.parent / "examples"
 
     s = f"""
     [pyrogram]
